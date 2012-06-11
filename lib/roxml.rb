@@ -561,7 +561,7 @@ module ROXML # :nodoc:
 
           inst.roxml_references.each do |ref|
             value = ref.value_in(xml)
-            unless value.nil?
+            unless value.nil? || ( value.is_a?(Array) && value.empty? )
               if inst.respond_to?(ref.opts.setter)
                 inst.send(ref.opts.setter, value) if ref.opts.call_setter?
               else
