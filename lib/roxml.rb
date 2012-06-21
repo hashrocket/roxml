@@ -557,7 +557,7 @@ module ROXML # :nodoc:
 
         object = @xml_initializer.nil? ? new(*initialization_args) : @xml_initializer.call(xml, parent)
         object.tap do |inst|
-          inst.roxml_references = roxml_attrs.map {|attr| attr.to_ref(inst) }
+          inst.roxml_references = inst.class.roxml_attrs.map {|attr| attr.to_ref(inst) }
 
           inst.roxml_references.each do |ref|
             value = ref.value_in(xml)
